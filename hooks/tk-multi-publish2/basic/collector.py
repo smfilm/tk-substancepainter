@@ -12,7 +12,6 @@ import os
 
 import sgtk
 
-
 __author__ = "Diego Garcia Huerta"
 __contact__ = "https://www.linkedin.com/in/diegogh/"
 
