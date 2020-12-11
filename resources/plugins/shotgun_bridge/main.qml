@@ -490,6 +490,13 @@ PainterPlugin
     server.debug = data.enabled;
   }
 
+  //-------------------------------
+    function createProject(data) {
+
+    alg.project.create(data.mesh_url, data.mesh_maps, data.template_url, data.project_settings);
+  }
+
+  //-------------------------------
   CommandServer
   {
     id: server
@@ -521,6 +528,7 @@ PainterPlugin
       registerCallback("UPDATE_DOCUMENT_RESOURCES", updateDocumentResources);
       registerCallback("DOCUMENT_RESOURCES", documentResources);
       registerCallback("TOGGLE_DEBUG_LOGGING", toggleDebugLogging);
+      registerCallback("CREATE_PROJECT", createProject);
       //checkConnectionTimer.start();
     }
 

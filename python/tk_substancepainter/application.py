@@ -230,6 +230,14 @@ class EngineClient(Client):
         success = self.send_and_receive("SAVE_PROJECT")
         return success
 
+    def create_project(self, mesh_url, mesh_maps=[], template_url="", project_settings={}):
+        success = self.send_and_receive("CREATE_PROJECT",
+                                        mesh_url=mesh_url,
+                                        mesh_maps=mesh_maps,
+                                        template_url=template_url,
+                                        project_settings=project_settings)
+        return success
+
     def close_project(self):
         success = self.send_and_receive("CLOSE_PROJECT")
         return success
