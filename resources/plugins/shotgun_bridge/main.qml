@@ -474,6 +474,7 @@ PainterPlugin
     return true;
   }
 
+
   function updateDocumentResources(data)
   {
     return alg.resources.updateDocumentResources(data.old_url, data.new_url);

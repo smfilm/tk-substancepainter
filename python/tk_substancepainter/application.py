@@ -291,7 +291,8 @@ class EngineClient(Client):
         )
 
         self.log_debug("Starting map export...")
-        result = self.send_and_receive("EXPORT_DOCUMENT_MAPS", destination=destination)
+        raise Exception('test')
+        result = self.send_and_receive("EXPORT_DOCUMENT_MAPS", destination=destination, map_info = {'resolution':[4096,4096]})
 
         while self.__export_results is None:
             self.log_debug("Waiting for maps to be exported ...")
