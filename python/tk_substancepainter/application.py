@@ -279,6 +279,7 @@ class EngineClient(Client):
         return result
 
     def export_document_maps(self, destination):
+        import re
         # This is a trick to wait until the async process of
         # exporting textures finishes.
         self.__export_results = None
@@ -290,9 +291,17 @@ class EngineClient(Client):
             "EXPORT_FINISHED", run_once_finished_exporting_maps
         )
 
-        self.log_debug("Starting map export...")
-        raise Exception('test')
-        result = self.send_and_receive("EXPORT_DOCUMENT_MAPS", destination=destination, map_info = {'resolution':[4096,4096]})
+
+
+        self.log_debug ("Starting map export...")
+        tex_size_var = os.getenv ('SUBSTANCE_TEX_SIZE')
+        if re.match('\d+:\d+', tex_size_var):
+            width, height = tex_size_var.split(':')
+            result = self.send_and_receive ("EXPORT_DOCUMENT_MAPS" , destination=destination ,
+                                            map_info={'resolution': [width , height]})
+        else:
+            result = self.send_and_receive ("EXPORT_DOCUMENT_MAPS" , destination=destination)
+
 
         while self.__export_results is None:
             self.log_debug("Waiting for maps to be exported ...")
